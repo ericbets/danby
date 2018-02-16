@@ -1,0 +1,56 @@
+#!/usr/bin/env node
+var argv = require('yargs').argv;
+var express = require('express');
+var fs = require('fs')
+var protobuf = require('protobufjs');
+var api = require('./template-parser');
+
+if (typeof(argv.grpc)=='undefined' || typeof(argv.proto)=='undefined' 
+	|| typeof(argv.service)=='undefined' || typeof(argv.pkg)=='undefined'
+	|| typeof(argv.port)=='undefined') {
+	console.log(argv.$0 + " --grpc localhost:50001 --proto file.proto --service Greeter --pkg helloworld --port 3000");
+	process.exit(1);	
+}
+
+var app = express();
+var expressWs = require('express-ws')(app);
+var PROTO_PATH = argv.proto;
+var apiText = "";
+
+protobuf.load(PROTO_PATH)
+    .then(function(root) {
+       apiText = api(root,argv.service);
+    });
+
+
+var grpc = require('grpc');
+var proto = grpc.load(PROTO_PATH);
+var stub; 
+eval("stub = proto." + argv.pkg);
+var client;
+eval("client = new stub." + argv.service + "('" + argv.grpc + "', grpc.credentials.createInsecure())");
+
+app.use('/', express.static("."))
+
+app.get('/api', function(req, res, next) {
+   res.send(apiText);	
+   res.end();
+});
+
+app.ws('/ws', function(ws, req) {
+  ws.on('message', function(msg) {
+ 	  function respond(data) {
+		ws.send(data);
+		ws.close();
+          };
+	  var obj = JSON.parse(msg);
+	 
+	  var call = "client." + obj["method"] + "(" + obj["payload"] + ", function (err,response) { respond(response.message); });";
+	  if (typeof(argv.debug)!=='undefined' && argv.debug==='true') 
+	  	console.log("Calling:" + call);
+	  eval(call); 
+  });
+
+});
+ 
+app.listen(argv.port);
