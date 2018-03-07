@@ -40,14 +40,17 @@ app.get('/api', function(req, res, next) {
 app.ws('/ws', function(ws, req) {
   ws.on('message', function(msg) {
  	  function respond(data) {
-		ws.send(data);
+		var str = JSON.stringify(data);
+		if (typeof(argv.debug)!=='undefined' && argv.debug==='true') 
+			console.log("S:" + str);
+		ws.send(str);
 		ws.close();
           };
 	  var obj = JSON.parse(msg);
 	 
-	  var call = "client." + obj["method"] + "(" + obj["payload"] + ", function (err,response) { respond(response.message); });";
+	  var call = "client." + obj["method"] + "(" + obj["payload"] + ", function (err,response) { respond(response); });";
 	  if (typeof(argv.debug)!=='undefined' && argv.debug==='true') 
-	  	console.log("Calling:" + call);
+	  	console.log("C:" + call);
 	  eval(call); 
   });
 
