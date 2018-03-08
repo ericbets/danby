@@ -19,14 +19,14 @@ Add this into the head tag of your html file:
 For example, to launch the webserver and serve up the files located in the website folder:
 
 ```shell
-cd website;
+cd website
 danby --grpc localhost:50051 --proto=helloworld.proto --service Greeter --pkg helloworld --port 3000
 ```
 
 Browser
 -------
 ```js
-Greeter.SayHello("{name: 'user'}").then(function(resp) { console.log(resp); });
+Greeter.SayHello({name: 'user'}).then(function(resp) { console.log(resp); });
 ```
 
 

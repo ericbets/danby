@@ -21,7 +21,6 @@ function api(root, svc) {
 
 		output += Mustache.render(template, view);
 	});
-
-	return output;
+	return { 'output': output, 'methods': methodNames };
 }
 module.exports = api;

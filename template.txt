@@ -9,7 +9,7 @@
     };
 
     ws.onmessage = function(evt) {		
-	resolve(evt.data);
+	resolve(JSON.parse(evt.data));
     };
 
     ws.onerror = function(evt) {
