@@ -51,7 +51,7 @@ app.ws('/ws', function(ws, req) {
           };
 	  var obj = JSON.parse(msg);
 
-	  if (methodNames.includes(obj["method"])) {
+	  if (methodNames.includes(obj["method"]) && typeof(obj["payload"]==='object')) {
 		  var call = "client." + obj["method"] + "(" + JSON.stringify(obj["payload"]) + ", function (err,response) { respond(response); });";
 		  if (typeof(argv.debug)!=='undefined' && argv.debug==='true') 
 	  		console.log("C:" + call);
