@@ -1,17 +1,20 @@
 #!/usr/bin/env node
-var argv = require('yargs').argv;
+var yargs = require('yargs')
+.option('grpc', { describe: 'grpc-server:port', demandOption:true })
+.option('service', { describe: 'service name', demandOption:true })
+.option('pkg', { describe: 'package namespace', demandOption:true })
+.option('port', { describe: 'http port', demandOption:true})
+.option('proto', { describe: 'path to .proto file', demandOption:true})
+.option('cert', { describe: 'path to cert file'})
+.option('key', { describe: 'path to private key for ssl/tls'})
+.option('debug', { describe: 'debug output to console for ssl/tls'});
+
+var argv = yargs.argv;
 var express = require('express');
 var https = require('https');
 var fs = require('fs')
 var protobuf = require('protobufjs');
 var api = require('./template-parser');
-
-if (typeof(argv.grpc)=='undefined' || typeof(argv.proto)=='undefined' 
-	|| typeof(argv.service)=='undefined' || typeof(argv.pkg)=='undefined'
-	|| typeof(argv.port)=='undefined') {
-	console.log(argv.$0 + " --grpc localhost:50001 --proto file.proto --service Greeter --pkg helloworld --port 3000");
-	process.exit(1);	
-}
 
 var app = express();
 var expressWs = require('express-ws')(app);
