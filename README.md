@@ -1,7 +1,7 @@
 Danby
 ===================
 
-Use grpc microservices from the browser. 
+Lightweight approach to grpc microservices in the browser.
 
 Usage
 --------
@@ -17,9 +17,9 @@ Options:
   --pkg      package namespace                                        [required]
   --port     http port                                                [required]
   --proto    path to .proto file                                      [required]
-  --cert     path to cert file
-  --key      path to private key for ssl/tls
-  --debug    debug output to console for ssl/tls
+  --cert     path to ssl/tls cert file
+  --key      path to ssl/tls private key 
+  --debug    debug output to console 
 ```
 
 
