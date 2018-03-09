@@ -31,6 +31,7 @@ var proto = grpc.load(PROTO_PATH);
 var stub; 
 eval("stub = proto." + argv.pkg);
 
+app.use(require('helmet')());
 app.use('/', express.static("."))
 
 app.get('/api', function(req, res, next) {
