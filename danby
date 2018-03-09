@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 var argv = require('yargs').argv;
 var express = require('express');
+var https = require('https');
 var fs = require('fs')
 var protobuf = require('protobufjs');
 var api = require('./template-parser');
@@ -73,3 +74,13 @@ app.ws('/ws', function(ws, req) {
 });
  
 app.listen(argv.port);
+
+if (typeof(argv.cert)!=='undefined' && typeof(argv.key)!=='undefined') {
+	var options = {
+		cert : fs.readFileSync(argv.cert),
+		key : fs.readFileSync(argv.key)
+	};
+	https.createServer(options,app).listen(443);
+}
+
+

@@ -1,6 +1,6 @@
 {
   "name": "danby",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "",
   "main": "danby",
   "dependencies": {
@@ -8,6 +8,7 @@
     "express-ws": "^3.0.0",
     "grpc": "^1.8.4",
     "helmet": "^3.12.0",
+    "https": "^1.0.0",
     "mustache": "^2.3.0",
     "protobufjs": "^6.8.4",
     "protocol-buffers": "^4.0.2",

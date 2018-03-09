@@ -26,14 +26,9 @@ danby --grpc localhost:50051 --proto helloworld.proto --service Greeter --pkg he
 Browser
 -------
 ```js
-//set Greeter.metadata for grpc interceptor call creds eg. Greeter.metadata["token"] = ...
+//For grpc interceptor call creds set the metedata eg. Greeter.metadata["token"] = ...
 
 Greeter.SayHello({name: 'user'}).then(function(resp) { console.log(resp); });
 ```
 
-
-Todo
--------
-1. Testing
-2. Letsencrypt support
 
