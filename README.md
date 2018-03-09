@@ -20,12 +20,14 @@ For example, to launch the webserver and serve up the files located in the websi
 
 ```shell
 cd website
-danby --grpc localhost:50051 --proto=helloworld.proto --service Greeter --pkg helloworld --port 3000
+danby --grpc localhost:50051 --proto helloworld.proto --service Greeter --pkg helloworld --port 3000
 ```
 
 Browser
 -------
 ```js
+//set Greeter.metadata for grpc interceptor call creds eg. Greeter.metadata["token"] = ...
+
 Greeter.SayHello({name: 'user'}).then(function(resp) { console.log(resp); });
 ```
 
@@ -34,5 +36,4 @@ Todo
 -------
 1. Testing
 2. Letsencrypt support
-3. Interceptor support for session auth
 

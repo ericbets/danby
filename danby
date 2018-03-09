@@ -30,8 +30,6 @@ var grpc = require('grpc');
 var proto = grpc.load(PROTO_PATH);
 var stub; 
 eval("stub = proto." + argv.pkg);
-var client;
-eval("client = new stub." + argv.service + "('" + argv.grpc + "', grpc.credentials.createInsecure())");
 
 app.use('/', express.static("."))
 
@@ -50,9 +48,21 @@ app.ws('/ws', function(ws, req) {
 		ws.close();
           };
 	  var obj = JSON.parse(msg);
+	  var metadata = new grpc.Metadata();
 
 	  if (methodNames.includes(obj["method"]) && typeof(obj["payload"]==='object')) {
-		  var call = "client." + obj["method"] + "(" + JSON.stringify(obj["payload"]) + ", function (err,response) { respond(response); });";
+
+		  var client;
+		  if (typeof(obj["metadata"])!=='undefined') {
+
+			Object.keys(obj["metadata"]).forEach((name,idx) => {
+				metadata.set(name, obj["metadata"][name]);	
+			});
+		  }
+
+		  eval("client = new stub." + argv.service + "('" + argv.grpc + "', grpc.credentials.createInsecure())");
+
+		  var call = "client." + obj["method"] + "(" + JSON.stringify(obj["payload"]) + ", metadata , function (err,response) { respond(response); });";
 		  if (typeof(argv.debug)!=='undefined' && argv.debug==='true') 
 	  		console.log("C:" + call);
 		  eval(call); 

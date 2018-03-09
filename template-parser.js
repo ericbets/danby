@@ -2,7 +2,7 @@ const Mustache = require("mustache");
 const fs = require("fs");
 
 function api(root, svc) {
-	var output = "var " + svc + " = {}; \n";
+	var output = "var " + svc + " = {}; \n" + svc + ".metadata = {};  \n";
 	const template = fs.readFileSync(__dirname + '/template.txt', 'utf8');
 	const svcdata = root.lookup(svc);
 	const methods = svcdata["methods"];

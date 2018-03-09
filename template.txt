@@ -3,7 +3,7 @@
     var ws = new WebSocket("ws://" + window.location.host  + "/ws");
 
     ws.onopen = function() {	
-	var obj = { method: '{{method}}', payload: data };
+	var obj = { method: '{{method}}', payload: data, metadata: {{service}}.metadata };
 	var str = JSON.stringify(obj);
         ws.send(str);
     };
