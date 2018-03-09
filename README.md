@@ -7,6 +7,19 @@ Usage
 --------
 ```shell
 npm install -g danby
+
+danby
+Options:
+  --help     Show help                                                 [boolean]
+  --version  Show version number                                       [boolean]
+  --grpc     grpc-server:port                                         [required]
+  --service  service name                                             [required]
+  --pkg      package namespace                                        [required]
+  --port     http port                                                [required]
+  --proto    path to .proto file                                      [required]
+  --cert     path to cert file
+  --key      path to private key for ssl/tls
+  --debug    debug output to console for ssl/tls
 ```
 
 Add this into the head tag of your html file:
@@ -16,7 +29,7 @@ Add this into the head tag of your html file:
 <script src="/api"></script>
 ```
 
-For example, to launch the webserver and serve up the files located in the website folder:
+For example, to launch the webserver and serve up the files located in the website folder with the grpc Greeter sample:
 
 ```shell
 cd website
