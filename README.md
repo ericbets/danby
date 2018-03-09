@@ -22,7 +22,10 @@ Options:
   --debug    debug output to console for ssl/tls
 ```
 
-For example, to launch the webserver and serve up the files located in the website folder with the grpc Greeter sample.
+
+Example
+-------
+Let's say you want to serve the files in the website directory with the grpc Greeter project.
 Add this into the head tag of the html file:
 
 
