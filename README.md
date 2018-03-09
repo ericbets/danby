@@ -22,15 +22,15 @@ Options:
   --debug    debug output to console for ssl/tls
 ```
 
-For example, to launch the webserver and serve up the files located in the website folder with the grpc Greeter sample:
-First add this into the head tag of your html file:
+For example, to launch the webserver and serve up the files located in the website folder with the grpc Greeter sample.
+Add this into the head tag of the html file:
 
 
 ```html
 <script src="/api"></script>
 ```
 
-Then from the console
+Then from the console:
 
 ```shell
 $ cd website
