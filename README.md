@@ -6,9 +6,9 @@ Use grpc microservices from the browser.
 Usage
 --------
 ```shell
-npm install -g danby
+$ npm install -g danby
 
-danby
+$ danby
 Options:
   --help     Show help                                                 [boolean]
   --version  Show version number                                       [boolean]
@@ -22,25 +22,25 @@ Options:
   --debug    debug output to console for ssl/tls
 ```
 
-Add this into the head tag of your html file:
+For example, to launch the webserver and serve up the files located in the website folder with the grpc Greeter sample:
+First add this into the head tag of your html file:
 
 
 ```html
 <script src="/api"></script>
 ```
 
-For example, to launch the webserver and serve up the files located in the website folder with the grpc Greeter sample:
+Then from the console
 
 ```shell
-cd website
-danby --grpc localhost:50051 --proto helloworld.proto --service Greeter --pkg helloworld --port 3000
+$ cd website
+$ danby --grpc localhost:50051 --proto helloworld.proto --service Greeter --pkg helloworld --port 3000
 ```
 
 Browser
 -------
 ```js
 //For grpc interceptor call creds set the metedata eg. Greeter.metadata["token"] = ...
-
 Greeter.SayHello({name: 'user'}).then(function(resp) { console.log(resp); });
 ```
 
