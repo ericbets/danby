@@ -40,8 +40,8 @@ $ cd website
 $ danby --grpc localhost:50051 --proto helloworld.proto --service Greeter --pkg helloworld --port 3000
 ```
 
-Browser
--------
+Now in the browser: 
+
 ```js
 //For grpc interceptor call creds set the metedata eg. Greeter.metadata["token"] = ...
 Greeter.SayHello({name: 'user'}).then(function(resp) { console.log(resp); });
