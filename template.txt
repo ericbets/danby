@@ -1,6 +1,6 @@
 {{service}}.{{method}} = function(data) {
   return new Promise(function(resolve, reject) {
-    var ws = new WebSocket("ws://" + window.location.host  + "/ws");
+    var ws = new WebSocket("{{ws}}://" + window.location.host  + "/ws");
 
     ws.onopen = function() {	
 	var obj = { method: '{{method}}', payload: data, metadata: {{service}}.metadata };

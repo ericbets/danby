@@ -21,10 +21,12 @@ var expressWs = require('express-ws')(app);
 var PROTO_PATH = argv.proto;
 var apiText = "";
 var methodNames;
+var wsProto = typeof(argv.cert)=='undefined' ? "ws": "wss";
+
 
 protobuf.load(PROTO_PATH)
     .then(function(root) {
-      const apiData = api(root,argv.service);
+      const apiData = api(root,argv.service, wsProto);
       apiText = apiData["output"];
       methodNames = apiData["methods"];
     });
