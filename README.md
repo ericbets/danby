@@ -30,7 +30,7 @@ Add this into the head tag of your chosen html file:
 
 
 ```html
-<script src="/api"></script>
+<script src="/grpc-api"></script>
 ```
 
 Then from the console:

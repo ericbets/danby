@@ -40,7 +40,7 @@ eval("stub = proto." + argv.pkg);
 app.use(require('helmet')());
 app.use('/', express.static("."))
 
-app.get('/api', function(req, res, next) {
+app.get('/grpc-api', function(req, res, next) {
    res.send(apiText);	
    res.end();
 });
