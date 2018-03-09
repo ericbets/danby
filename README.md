@@ -25,7 +25,7 @@ Options:
 
 Example
 -------
-Let's say you want to serve some static files in your website directory with the canonical grpc Greeter interface.
+Let's say you want to serve some static files in your website directory with access to the canonical grpc Greeter interface.
 Add this into the head tag of your chosen html file:
 
 
