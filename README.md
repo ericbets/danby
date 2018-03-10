@@ -1,7 +1,7 @@
 Danby
 ===================
 
-Lightweight approach to grpc microservices in the browser.
+Lightweight approach to grpc microservices in the browser. No client side lib required.
 
 Usage
 --------
@@ -25,7 +25,7 @@ Options:
 
 Example
 -------
-Let's say you want to serve some static files in your website directory with access to the canonical grpc Greeter interface.
+Let's say you want to serve some static files in your website directory with access to the grpc Greeter interface.
 Add this into the head tag of your chosen html file:
 
 
