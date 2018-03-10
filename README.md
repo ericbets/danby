@@ -25,7 +25,7 @@ Options:
 
 Example
 -------
-Let's say you want to serve some static files in your website directory with access to the grpc Greeter interface.
+Let's say you want to serve some static files with access to the grpc Greeter interface.
 Add this into the head tag of your chosen html file:
 
 
@@ -33,7 +33,7 @@ Add this into the head tag of your chosen html file:
 <script src="/grpc-api"></script>
 ```
 
-Then from the console:
+Then from the console, cd into the folder you want to serve:
 
 ```shell
 $ cd website
@@ -43,7 +43,7 @@ $ danby --grpc localhost:50051 --proto helloworld.proto --service Greeter --pkg 
 Now in the browser: 
 
 ```js
-//For grpc interceptor call creds set the metedata eg. Greeter.metadata["token"] = ...
+//Manage call creds by setting the metadata eg. Greeter.metadata["token"] = ...
 Greeter.SayHello({name: 'user'}).then(function(resp) { console.log(resp); });
 ```
 
