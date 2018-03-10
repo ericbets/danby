@@ -41,11 +41,12 @@ app.use(require('helmet')());
 app.use('/', express.static("."))
 
 app.get('/grpc-api', function(req, res, next) {
+   res.setHeader("Content-Type", "application/javascript");
    res.send(apiText);	
    res.end();
 });
 
-app.ws('/ws', function(ws, req) {
+app.ws('/grpc-ws', function(ws, req) {
   ws.on('message', function(msg) {
  	  function respond(data) {
 		var str = JSON.stringify(data);
