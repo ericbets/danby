@@ -48,3 +48,8 @@ Greeter.SayHello({name: 'user'}).then(function(resp) { console.log(resp); });
 ```
 
 
+Todo
+------
+* Streaming support
+* Support multiple grpc services 
+
