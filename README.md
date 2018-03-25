@@ -6,7 +6,7 @@ Lightweight approach to grpc microservices in the browser. No client side lib re
 Usage
 --------
 ```shell
-$ npm install -g danby
+$ npm install danby
 
 $ danby
 Options:
@@ -19,6 +19,7 @@ Options:
   --proto    path to .proto file                                      [required]
   --cert     path to ssl/tls cert file
   --key      path to ssl/tls private key 
+  --webroot  path to webroot, defaults to $PWD 
   --debug    debug output to console 
 ```
 
