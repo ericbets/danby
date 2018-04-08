@@ -7,8 +7,8 @@ var yargs = require('yargs')
 .option('proto', { describe: 'path to .proto file', demandOption:true})
 .option('cert', { describe: 'path to cert file'})
 .option('key', { describe: 'path to private key for ssl/tls'})
-.option('webroot', { describe: 'path to webroot, defaults to $PWD'});
-.option('debug', { describe: 'debug output to console for ssl/tls'})
+.option('webroot', { describe: 'path to webroot, defaults to $PWD'})
+.option('debug', { describe: 'debug output to console for ssl/tls'});
 
 var argv = yargs.argv;
 var express = require('express');
@@ -43,7 +43,7 @@ app.use(require('helmet')());
 if (typeof(argv.webroot)=='undefined')
 	app.use('/', express.static("."));
 else
-	app.use('/', express.static(argv.webroot);
+	app.use('/', express.static(argv.webroot));
 
 app.get('/grpc-api', function(req, res, next) {
    res.setHeader("Content-Type", "application/javascript");
