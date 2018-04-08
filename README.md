@@ -23,7 +23,6 @@ Options:
   --debug    debug output to console 
 ```
 
-
 Example
 -------
 Let's say you want to serve some static files with access to the grpc Greeter interface.
