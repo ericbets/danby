@@ -52,4 +52,4 @@ Todo
 ------
 * Streaming support
 * Support multiple grpc services 
-
+* Proxy support (eg. map '/' to a react webpack hot reloading webserver)
