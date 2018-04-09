@@ -3,10 +3,12 @@ Danby
 
 Lightweight approach to grpc microservices in the browser. No client side lib required.
 
+
 Features
 --------
 * Uses helmet.js to set HTTP headers to sane defaults.
 * Proxy any number of grpc microservices on different hosts/ports, as long as they have unique service names.
+
 
 Usage
 --------
@@ -25,11 +27,11 @@ Options:
   --debug    debug output to console 
 ```
 
+
 Example
 -------
 Let's say you want to serve some static files with access to the grpc Greeter interface.
 Add this into the head tag of your chosen html file:
-
 
 ```html
 <script src="/grpc-api"></script>
@@ -37,13 +39,10 @@ Add this into the head tag of your chosen html file:
 
 Now modify config.json.sample to suit your local environment. Then from the console, cd into the folder you want to serve:
 
-
 ```shell
 $ cd website
 $ danby --port 3000 --cfg config.json
 ```
-
-Note that the .proto file paths you specify in the config file will be relative to the folder you started the webserver in.
 
 Now in the browser: 
 
@@ -51,6 +50,8 @@ Now in the browser:
 //Manage call creds by setting the metadata eg. Greeter.metadata["token"] = ...
 Greeter.SayHello({name: 'user'}).then(function(resp) { console.log(resp); });
 ```
+
+Note that the .proto file paths you specify in the config file will be relative to the folder you started the webserver in.
 
 
 Todo
