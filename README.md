@@ -8,7 +8,7 @@ Features
 --------
 * Bare minimum configuration required.
 * Uses helmet.js to set HTTP headers to sane defaults.
-* Proxy any number of grpc microservices on different hosts/ports, as long as they have unique service names.
+* Proxy any number of grpc microservices to this webserver, as long as they have unique service names.
 
 
 Usage
