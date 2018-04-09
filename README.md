@@ -51,7 +51,7 @@ Now in the browser:
 Greeter.SayHello({name: 'user'}).then(function(resp) { console.log(resp); });
 ```
 
-Try to use absolute paths for your .proto files since the ones you specify in the config file will be relative to the folder you started the webserver in, not the config file.
+In your config file, try to use absolute paths for your .proto files otherwise the paths will be relative to the folder you started the webserver in, not the config file.
 
 
 Todo
