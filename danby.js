@@ -8,7 +8,7 @@ var yargs = require('yargs')
 .option('cert', { describe: 'path to cert file'})
 .option('key', { describe: 'path to private key for ssl/tls'})
 .option('webroot', { describe: 'path to webroot, defaults to $PWD'})
-.option('debug', { describe: 'debug output to console for ssl/tls'});
+.option('debug', { describe: 'debug output to console'});
 
 var argv = yargs.argv;
 var express = require('express');
@@ -19,13 +19,11 @@ var api = require('./template-parser');
 
 var app = express();
 var expressWs = require('express-ws')(app);
-var PROTO_PATH = argv.proto;
 var apiText = "";
 var methodNames;
 var wsProto = typeof(argv.cert)=='undefined' ? "ws": "wss";
 
-
-protobuf.load(PROTO_PATH)
+protobuf.load(argv.proto)
     .then(function(root) {
       const apiData = api(root,argv.service, wsProto);
       apiText = apiData["output"];
