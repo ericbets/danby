@@ -35,9 +35,8 @@ Add this into the head tag of your chosen html file:
 <script src="/grpc-api"></script>
 ```
 
-Using the simple config.json.sample as a guide edit the file to reflect your local environment.
+Modify config.json.sample to suit your local environment. Then from the console, cd into the folder you want to serve:
 
-Then from the console, cd into the folder you want to serve:
 
 ```shell
 $ cd website
