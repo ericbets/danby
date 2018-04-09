@@ -76,6 +76,7 @@ async function main() {
 			ws.send(str);
 			ws.close();
 		  };
+		  //Input filtering by relying on Node.js's builtin json parsing automata to reject invalid json
 		  var obj = JSON.parse(msg);
 		  var metadata = new grpc.Metadata();
 
