@@ -32,7 +32,7 @@ protobuf.load(argv.proto)
 
 
 var grpc = require('grpc');
-var proto = grpc.load(PROTO_PATH);
+var proto = grpc.load(argv.proto);
 var stub; 
 eval("stub = proto." + argv.pkg);
 
