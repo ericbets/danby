@@ -35,13 +35,15 @@ Add this into the head tag of your chosen html file:
 <script src="/grpc-api"></script>
 ```
 
-Modify config.json.sample to suit your local environment. Then from the console, cd into the folder you want to serve:
+Now modify config.json.sample to suit your local environment. Then from the console, cd into the folder you want to serve:
 
 
 ```shell
 $ cd website
 $ danby --port 3000 --cfg config.json
 ```
+
+Note that the .proto file paths you specify in the config file will be relative to the folder you started the webserver in.
 
 Now in the browser: 
 
