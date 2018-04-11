@@ -11,6 +11,7 @@ var yargs = require('yargs')
 var argv = yargs.argv;
 var express = require('express');
 var https = require('https');
+var proxy = require('express-http-proxy');
 var fs = require('fs')
 var protobuf = require('protobufjs');
 var api = require('./template-parser');
@@ -22,12 +23,6 @@ var toml = require('toml');
 var services = {};
 var apiText="";
 
-function getConfig(filename) {
-	if (filename.startsWith('/'))
-		return toml.parse(fs.readFileSync(filename, 'utf8'));
-	else
-		return toml.parse(fs.readFileSync(__dirname + "/" + filename, 'utf8'));
-}
 function getSvcRemote(svcName) {
 	return "services['" + svcName + "'].remote." + svcName;
 }
@@ -37,7 +32,7 @@ function getSvcConnect(svcName) {
 
 async function main() {
 	if (typeof(argv.cfg)!=='undefined') {
-		var cfgData = getConfig(argv.cfg);
+		var cfgData = toml.parse(fs.readFileSync(argv.cfg,'utf8'));
 		var servers = [];
 		Object.keys(cfgData["server"]).forEach((name) => {
 			servers.push(cfgData["server"][name]);	
@@ -65,6 +60,15 @@ async function main() {
 		app.use('/', express.static("."));
 	else
 		app.use('/', express.static(argv.webroot));
+
+	Object.keys(cfgData["proxy"]).forEach((name) => {
+		var fromRoute = cfgData["proxy"][name]["from"];
+		var dest = cfgData["proxy"][name]["to"];
+
+		if (fromRoute && dest)
+			app.use(fromRoute, proxy(dest));
+
+	});
 
 	app.get('/grpc-api', function(req, res, next) {
 	   res.setHeader("Content-Type", "application/javascript");

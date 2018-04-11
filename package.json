@@ -1,6 +1,6 @@
 {
   "name": "danby",
-  "version": "2.0",
+  "version": "2.0.1",
   "description": "Web Server with grpc",
   "bin": {
     "danby.js": "danby"
@@ -8,6 +8,7 @@
   "main": "danby",
   "dependencies": {
     "express": "^4.16.2",
+    "express-http-proxy": "^1.1.0",
     "express-ws": "^3.0.0",
     "grpc": "^1.8.4",
     "helmet": "^3.12.0",

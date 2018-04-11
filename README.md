@@ -7,7 +7,8 @@ Lightweight approach to grpc microservices in the browser. No client side lib re
 Features
 --------
 * Bare minimum configuration required, uses helmet.js to set HTTP headers to sane defaults.
-* Proxy any number of microservices to this webserver, as long as they have unique grpc service names.
+* Proxy any number of grpc microservices to this webserver, as long as they have unique grpc service names.
+* Proxy any number of routes to other (eg. dev) webservers. Eg. "/" to localhost:3000 might map to a react app.
 
 
 Usage
@@ -57,4 +58,3 @@ In your config file, try to use absolute paths for your .proto files otherwise t
 Todo
 ------
 * Streaming support
-* Proxy support (eg. map '/' to a react webpack hot reloading webserver)

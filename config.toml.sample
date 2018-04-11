@@ -6,6 +6,8 @@
 [server.2]
 	service = "Byeworld"
 	proto = "byeworld.proto"
-	pkg = "byeword"
+	pkg = "byewolrd"
 	grpc = "localhost:50052"
-
+[proxy.1]
+	from = "/react-app"
+	to = "localhost:3000"
