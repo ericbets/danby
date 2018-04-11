@@ -6,9 +6,8 @@ Lightweight approach to grpc microservices in the browser. No client side lib re
 
 Features
 --------
-* Bare minimum configuration required.
-* Uses helmet.js to set HTTP headers to sane defaults.
-* Proxy any number of grpc microservices to this webserver, as long as they have unique service names.
+* Bare minimum configuration required, uses helmet.js to set HTTP headers to sane defaults.
+* Proxy any number of microservices to this webserver, as long as they have unique grpc service names.
 
 
 Usage
@@ -21,7 +20,7 @@ Options:
   --help     Show help                                                 [boolean]
   --version  Show version number                                       [boolean]
   --port     http port                                                [required]
-  --cfg      path to json config file
+  --cfg      path to toml config file
   --cert     path to ssl/tls cert file
   --key      path to ssl/tls private key 
   --webroot  path to webroot, defaults to $PWD 
@@ -38,11 +37,11 @@ Add this into the head tag of your chosen html file:
 <script src="/grpc-api"></script>
 ```
 
-Now modify config.json.sample to suit your local environment. Then from the console, cd into the folder you want to serve:
+Now modify config.toml.sample to suit your local environment. Then from the console, cd into the folder you want to serve:
 
 ```shell
 $ cd website
-$ danby --port 3000 --cfg config.json
+$ danby --port 3000 --cfg config.toml
 ```
 
 Now in the browser: 

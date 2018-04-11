@@ -1,5 +1,0 @@
-[
-	{"service":"Greeter","proto":"helloworld.proto","pkg":"helloworld","grpc":"localhost:50051"},
-	{"service":"CheckYaLater","proto":"byeworld.proto","pkg":"byeworld","grpc":"localhost:50052"},
-	{"proxyroute":"/", "to":"localhost:3000"}
-]

@@ -3,7 +3,7 @@
   "version": "2.0",
   "description": "Web Server with grpc",
   "bin": {
-	"danby.js" : "danby"
+    "danby.js": "danby"
   },
   "main": "danby",
   "dependencies": {
@@ -16,6 +16,7 @@
     "protobufjs": "^6.8.4",
     "protocol-buffers": "^4.0.2",
     "protocol-buffers-schema": "^3.3.2",
+    "toml": "^2.3.3",
     "yargs": "^11.0.0"
   },
   "devDependencies": {},

@@ -1,0 +1,11 @@
+[server.1]
+	service = "Greeter"
+	proto = "helloworld.proto"
+	pkg = "helloworld"
+	grpc = "localhost:50051"
+[server.2]
+	service = "Byeworld"
+	proto = "byeworld.proto"
+	pkg = "byeword"
+	grpc = "localhost:50052"
+

@@ -18,14 +18,15 @@ var app = express();
 var expressWs = require('express-ws')(app);
 var wsProto = typeof(argv.cert)=='undefined' ? "ws": "wss";
 var grpc = require('grpc');
+var toml = require('toml');
 var services = {};
 var apiText="";
 
 function getConfig(filename) {
 	if (filename.startsWith('/'))
-		return JSON.parse(fs.readFileSync(filename, 'utf8'));
+		return toml.parse(fs.readFileSync(filename, 'utf8'));
 	else
-		return JSON.parse(fs.readFileSync(__dirname + "/" + filename, 'utf8'));
+		return toml.parse(fs.readFileSync(__dirname + "/" + filename, 'utf8'));
 }
 function getSvcRemote(svcName) {
 	return "services['" + svcName + "'].remote." + svcName;
@@ -37,8 +38,12 @@ function getSvcConnect(svcName) {
 async function main() {
 	if (typeof(argv.cfg)!=='undefined') {
 		var cfgData = getConfig(argv.cfg);
-		
-		for (let item of cfgData) {
+		var servers = [];
+		Object.keys(cfgData["server"]).forEach((name) => {
+			servers.push(cfgData["server"][name]);	
+		});
+
+		for (let item of servers) {
 			if (item.service) {
 				let root = await protobuf.load(item.proto);
 				const apiData = api(root,item.service, wsProto);
