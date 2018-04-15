@@ -22,6 +22,7 @@ var grpc = require('grpc');
 var toml = require('toml');
 var services = {};
 var apiText="";
+var cfgData = null;
 
 function getSvcRemote(svcName) {
 	return "services['" + svcName + "'].remote." + svcName;
@@ -32,7 +33,7 @@ function getSvcConnect(svcName) {
 
 async function main() {
 	if (typeof(argv.cfg)!=='undefined') {
-		var cfgData = toml.parse(fs.readFileSync(argv.cfg,'utf8'));
+		cfgData = toml.parse(fs.readFileSync(argv.cfg,'utf8'));
 		var servers = [];
 		Object.keys(cfgData["server"]).forEach((name) => {
 			servers.push(cfgData["server"][name]);	
@@ -61,14 +62,16 @@ async function main() {
 	else
 		app.use('/', express.static(argv.webroot));
 
-	Object.keys(cfgData["proxy"]).forEach((name) => {
-		var fromRoute = cfgData["proxy"][name]["from"];
-		var dest = cfgData["proxy"][name]["to"];
+	if (cfgData !==null) {
+		Object.keys(cfgData["proxy"]).forEach((name) => {
+			var fromRoute = cfgData["proxy"][name]["from"];
+			var dest = cfgData["proxy"][name]["to"];
+	
+			if (fromRoute && dest)
+				app.use(fromRoute, proxy(dest));
 
-		if (fromRoute && dest)
-			app.use(fromRoute, proxy(dest));
-
-	});
+		});
+	}
 
 	app.get('/grpc-api', function(req, res, next) {
 	   res.setHeader("Content-Type", "application/javascript");
