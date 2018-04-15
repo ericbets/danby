@@ -1,6 +1,6 @@
 {
   "name": "danby",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "Web Server with grpc",
   "bin": {
     "danby.js": "danby"
