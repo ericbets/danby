@@ -13,7 +13,7 @@ Features
 
 Usage
 --------
-To install using globally, try --unsafe-perm or --allow-root [why]: https://github.com/nodejs/node-gyp/issues/454
+To install using globally, try --unsafe-perm or --allow-root [why](https://github.com/nodejs/node-gyp/issues/454)
 
 
 ```shell
