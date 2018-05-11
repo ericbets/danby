@@ -16,6 +16,8 @@ Usage
 ```shell
 $ npm install danby
 
+To install using -g, use --unsafe-perm or --allow-root [why]: https://github.com/nodejs/node-gyp/issues/454
+
 $ danby
 Options:
   --help     Show help                                                 [boolean]
