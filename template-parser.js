@@ -12,6 +12,8 @@ function api(root, svc, wsproto) {
 
 		const method = methods[name];
 		const requestType = method["requestType"];
+		const requestStream = method["requestStream"];
+		const responseStream = method["responseStream"];
 		const responseType = method["responseType"];
 
 		var view = {
